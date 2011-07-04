@@ -1,6 +1,8 @@
 [submodule "bundle/snipMate"]
 	path = bundle/snipMate
 	url = https://github.com/vim-scripts/snipMate.git
+	ignore = dirty
 [submodule "bundle/jellybeans"]
 	path = bundle/jellybeans
 	url = https://github.com/vim-scripts/jellybeans.vim.git
+	ignore = dirty
