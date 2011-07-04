@@ -3,13 +3,24 @@ call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
 " General Settings
+syntax on               " syntax highlight
+colorscheme jellybeans
+
+set t_Co=256
+
+set hlsearch            " search highlighting
 set nocompatible        " not compatible with the old-fashion vi mode
 set bs=2                " allow backspacing over everything in insert mode
 set history=50          " keep 50 lines of command line history
 set ruler               " show the cursor position all the time
 set autoread            " auto read when file is changed from outside
-
-set ai                  " set autoindent
+set autoindent          " auto indentation
+set incsearch           " incremental search
+set nobackup            " no *~ backup files
+set copyindent          " copy the previous indentation on autoindenting
+set ignorecase          " ignore case when searching
+set smartcase           " ignore case if search pattern is all lowercase,case-sensitive otherwise
+set smarttab            " insert tabs on the start of a line according to context
 set nowrap
 
 filetype on             " Enable filetype detection
@@ -18,11 +29,6 @@ filetype plugin on      " Enable filetype-specific plugins
 
 " auto reload vimrc when editing it
 autocmd! bufwritepost .vimrc source ~/.vimrc
-
-set t_Co=256
-syntax on               " syntax highlight
-set hlsearch            " search highlighting
-
 
 " set listchars=tab:\|\ ,trail:_,eol:$,extends:>,precedes:<
 
@@ -64,11 +70,6 @@ if has("multi_byte")
 else
     echoerr "Sorry, this version of (g)vim was not compiled with multi_byte"
 endif
-
-colorscheme jellybeans
-" hi Search cterm=NONE ctermfg=grey ctermbg=blue
-hi StatusLine   cterm=bold,reverse
-hi StatusLineNC cterm=reverse
 
 " TAB setting {
     set et              " set expandtab; replace <TAB> with spaces

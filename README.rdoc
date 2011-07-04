@@ -35,7 +35,7 @@ Or you can update to the latest version of each plugin bundle by running the fol
 
 PLUGINS
 -------
-* [snipMate](https://github.com/vim-scripts/snipMate.git): TextMate-style snippets for Vim
+* [snipMate](https://github.com/vim-scripts/snipMate): TextMate-style snippets for Vim
   `:help snipMate` to see more info.
 
-* [jellybeans](https://github.com/vim-scripts/jellybeans.vim.git): A colorful, dark color scheme for Vim
+* [jellybeans](https://github.com/vim-scripts/jellybeans.vim): A colorful, dark color scheme for Vim
