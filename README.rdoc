@@ -1,0 +1,41 @@
+pigfoot's vimrc
+============
+Author: Chih-Chia Chen <pigfoot@gmail.com>
+
+Fork me on GITHUB  https://github.com/pigfoot/dotvim
+
+HOW TO INSTALL
+--------------
+
+1. Check out from github
+
+    $ git clone https://github.com/vgod/vimrc ~/.vim
+    $ cd ~/.vim
+    $ git submodule update --init
+
+ADD A NEW PLUGIN BUNDLE
+----------------------
+
+    $ mkdir ~/.vim/bundle
+    $ git submodule add https://github.com/vim-scripts/snipMate.git bundle/snipMate
+    $ git commit -m "Install snipMate.vim bundle as a submodule."
+
+UPGRADE PLUGIN BUNDLES
+----------------------
+
+All plugins (except vim-latex) were checked out as git submodules,
+which can be upgraded with `git pull`. For example, to upgrade snipMate
+
+    $ cd ~/.vim/bundle/snipMate
+    $ git pull
+
+Or you can update to the latest version of each plugin bundle by running the following:
+
+    $ git submodule foreach git pull origin master
+
+PLUGINS
+-------
+* [snipMate](https://github.com/vim-scripts/snipMate.git): TextMate-style snippets for Vim
+  `:help snipMate` to see more info.
+
+* [jellybeans](https://github.com/vim-scripts/jellybeans.vim.git): A colorful, dark color scheme for Vim
