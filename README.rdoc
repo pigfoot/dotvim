@@ -9,7 +9,7 @@ HOW TO INSTALL
 
 1. Check out from github
 
-    $ git clone https://github.com/vgod/vimrc ~/.vim
+    $ git clone https://github.com/pigfoot/dotvim.git ~/.vim
     $ cd ~/.vim
     $ git submodule update --init
 
