@@ -84,7 +84,8 @@ endif
     set ls=2            " set laststatus=2; Always show status line
     if has('statusline')
 
-        " Status line detail:
+        " Status line detail:  /usr/share/vim/vim7/doc/options.txt
+        "
         " %f                                                   file path
         " %y                                                   file type between braces (if defined)
         " %([%R%M]%)                                           read-only, modified and modifiable flags between braces
@@ -98,9 +99,9 @@ endif
 
         " vimrc            \   [unix/VIM/utf-8]          sojia:~/.vim\         90,8       86%/104
         function SetStatusLineStyle_vgod()
-            set statusline=\ %{HasPaste()}%<%-15.25(%f%)%m%r%h\ %w\ \
+            set statusline=\ %{HasPaste()}%<%-15.25(%f%)%m%r%h\ %w\ 
             set statusline+=\ \ \ [%{&ff}/%Y/%{&encoding}]
-            set statusline+=\ \ \ %<%20.30(%{hostname()}:%{CurDir()}%)\
+            set statusline+=\ \ \ %<%20.30(%{hostname()}:%{CurDir()}%)/
             set statusline+=%=%-10.(%l,%c%V%)\ %p%%/%L
         endfunction
 
