@@ -99,7 +99,7 @@ endif
 
         " vimrc            \   [unix/VIM/utf-8]          sojia:~/.vim\         90,8       86%/104
         function SetStatusLineStyle_vgod()
-            set statusline=\ %{HasPaste()}%<%-15.25(%f%)%m%r%h\ %w\ 
+            set statusline=\ %{HasPaste()}%<%-15.25(%f%)%m%r%h\ %w\
             set statusline+=\ \ \ [%{&ff}/%Y/%{&encoding}]
             set statusline+=\ \ \ %<%20.30(%{hostname()}:%{CurDir()}%)/
             set statusline+=%=%-10.(%l,%c%V%)\ %p%%/%L
@@ -156,8 +156,16 @@ function! RemoveTrailingSpace()
     endif
 endfunction
 
-"Everytime you issue a :w command, Vim will automatically remove all trailing whitespace before saving.
-" autocmd BufWritePre * :%s/\s\+$//e
+"---------------------------------------------------------------------------
+"" PROGRAMMING SHORTCUTS
+"---------------------------------------------------------------------------
+fun! IncludeGuard()
+   let basename = substitute(bufname(""), '.*/', '', '')
+   let guard = '_' . substitute(toupper(basename), '\.', '_', "H") . '_'
+   call append(0, "#ifndef " . guard)
+   call append(1, "#define " . guard)
+   call append(line("$"), "#endif /* " . guard . " */")
+endfun
 
 "---------------------------------------------------------------------------
 " USEFUL SHORTCUTS
@@ -166,11 +174,23 @@ endfunction
 "let mapleader=","
 "let g:mapleader=","
 
-"Trim all trailing spaces
+"Trim all trailing spaces by \r
 map <leader>r :call RemoveTrailingSpace()<CR>
 
-"replace the current word in all opened buffers
+"replace the current word in all opened buffers by \R
 map <leader>R :call Replace()<CR>
 
 "Use NerdTree
 map <leader>n :NERDTree<CR>
+
+"Use IncludeGuard() by \i
+map <leader>i :call IncludeGuard()<CR>
+
+"Use ctags by F12
+map <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+
+"---------------------------------------------------------------------------
+"" PLUGIN SETTINGS
+"---------------------------------------------------------------------------
+"Set tags search path
+set tags+=~/.vim/tags,../tags,../../tags,../../../tags,../../../../tags,../../../../../tags,../../../../../tags
