@@ -21,7 +21,7 @@ HOW TO INSTALL
 ADD A NEW PLUGIN BUNDLE
 ----------------------
 
-    $ mkdir ~/.vim/bundle
+    $ mkdir ~/.vim
     $ git submodule add https://github.com/vim-scripts/snipMate.git bundle/snipMate
     $ git commit -m "Install snipMate.vim bundle as a submodule."
 
@@ -51,6 +51,8 @@ PLUGINS
   `:help snipMate` to see more info.
 
 * [OmniCppComplete](https://github.com/vim-scripts/OmniCppComplete): C/C++ omni-completion with ctags database.
+
+* [SuperTab](https://github.com/vim-scripts/SuperTab): Perform all your vim insert mode completions with Tab
 
 * [jellybeans](https://github.com/vim-scripts/jellybeans.vim): A colorful, dark color scheme for Vim
 
