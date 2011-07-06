@@ -6,3 +6,7 @@
 	path = bundle/jellybeans
 	url = https://github.com/vim-scripts/jellybeans.vim.git
 	ignore = dirty
+[submodule "bundle/nerdtree"]
+	path = bundle/nerdtree
+	url = https://github.com/vim-scripts/The-NERD-tree.git
+	ignore = dirty

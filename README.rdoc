@@ -35,6 +35,13 @@ Or you can update to the latest version of each plugin bundle by running the fol
 
 PLUGINS
 -------
+* [Nerd Tree](https://github.com/vim-scripts/The-NERD-tree): A tree explorer plugin for navigating the filesystem.
+  Useful commands:
+  `:Bookmark [name]` - bookmark any directory as name
+  `:NERDTree [name]` - open the bookmark [name] in Nerd Tree
+
+* [Command-T](https://github.com/vim-scripts/Command-T): open and navigate between files with `cmd-t`.
+
 * [snipMate](https://github.com/vim-scripts/snipMate): TextMate-style snippets for Vim
   `:help snipMate` to see more info.
 
