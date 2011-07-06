@@ -162,3 +162,9 @@ endfunction
 "---------------------------------------------------------------------------
 " USEFUL SHORTCUTS
 "---------------------------------------------------------------------------
+" set leader to ,
+let mapleader=","
+let g:mapleader=","
+
+"replace the current word in all opened buffers
+map <leader>r :call RemoveTrailingSpace()<CR>

@@ -46,3 +46,5 @@ PLUGINS
   `:help snipMate` to see more info.
 
 * [jellybeans](https://github.com/vim-scripts/jellybeans.vim): A colorful, dark color scheme for Vim
+
+* [NERDCommenter](https://github.com/scrooloose/nerdcommenter): Vim plugin for intensely orgasmic commenting
