@@ -50,6 +50,8 @@ PLUGINS
 * [snipMate](https://github.com/vim-scripts/snipMate): TextMate-style snippets for Vim
   `:help snipMate` to see more info.
 
+* [OmniCppComplete](https://github.com/vim-scripts/OmniCppComplete): C/C++ omni-completion with ctags database.
+
 * [jellybeans](https://github.com/vim-scripts/jellybeans.vim): A colorful, dark color scheme for Vim
 
 * [NERDCommenter](https://github.com/scrooloose/nerdcommenter): Vim plugin for intensely orgasmic commenting

@@ -18,3 +18,7 @@
 	path = bundle/command-t
 	url = https://github.com/vim-scripts/Command-T.git
 	ignore = dirty
+[submodule "bundle/OmniCppComplete"]
+	path = bundle/OmniCppComplete
+	url = https://github.com/vim-scripts/OmniCppComplete.git
+	ignore = dirty
