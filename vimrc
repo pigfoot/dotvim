@@ -162,9 +162,15 @@ endfunction
 "---------------------------------------------------------------------------
 " USEFUL SHORTCUTS
 "---------------------------------------------------------------------------
-" set leader to ,
-let mapleader=","
-let g:mapleader=","
+" set leader from default \\ to ,
+"let mapleader=","
+"let g:mapleader=","
+
+"Trim all trailing spaces
+map <leader>r :call RemoveTrailingSpace()<CR>
 
 "replace the current word in all opened buffers
-map <leader>r :call RemoveTrailingSpace()<CR>
+map <leader>R :call Replace()<CR>
+
+"Use NerdTree
+map <leader>n :NERDTree<CR>

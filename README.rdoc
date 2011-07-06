@@ -13,6 +13,11 @@ HOW TO INSTALL
     $ cd ~/.vim
     $ git submodule update --init
 
+2. (Optional, if you want Command-T) Compile the Command-T plugin
+    $ cd ~/.vim/bundle/command-t/ruby/command-t
+    $ ruby extconf.rb
+    $ make
+
 ADD A NEW PLUGIN BUNDLE
 ----------------------
 

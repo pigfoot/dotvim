@@ -14,3 +14,7 @@
 	path = bundle/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
 	ignore = dirty
+[submodule "bundle/command-t"]
+	path = bundle/command-t
+	url = https://github.com/vim-scripts/Command-T.git
+	ignore = dirty
