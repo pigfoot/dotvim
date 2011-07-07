@@ -25,6 +25,8 @@ ADD A NEW PLUGIN BUNDLE
     $ git submodule add https://github.com/vim-scripts/snipMate.git bundle/snipMate
     $ git commit -m "Install snipMate.vim bundle as a submodule."
 
+    $ git submodule updatge (On client site)
+
 UPGRADE PLUGIN BUNDLES
 ----------------------
 
