@@ -4,9 +4,18 @@ call pathogen#helptags()
 
 " General Settings
 syntax on               " syntax highlight
-colorscheme jellybeans
 
-set t_Co=256
+" screen with --enable-colors256 (Gentoo does this by default!)
+if $TERM =~ '^screen' | set t_Co=256 | endif
+if &t_Co >= 256
+    try
+        colorscheme jellybeans
+    catch
+        colorscheme desert
+    endtry
+else
+    colorscheme desert
+endif
 
 set hlsearch            " search highlighting
 set nocompatible        " not compatible with the old-fashion vi mode
@@ -188,6 +197,10 @@ map <leader>i :call IncludeGuard()<CR>
 
 "Use ctags by F12
 map <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+
+"Increment/Decrement number by F10/F11 (conflict with screen's C-a)
+map <F10> <C-a>
+map <F11> <C-x>
 
 "---------------------------------------------------------------------------
 "" PLUGIN SETTINGS
