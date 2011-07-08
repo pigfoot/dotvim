@@ -6,7 +6,10 @@ call pathogen#helptags()
 syntax on               " syntax highlight
 
 " screen with --enable-colors256 (Gentoo does this by default!)
-if $TERM =~ '^screen' | set t_Co=256 | endif
+if ($TERM == 'screen' || $TERM == 'xterm')
+    set t_Co=256
+endif
+
 if &t_Co >= 256
     try
         colorscheme jellybeans
@@ -207,3 +210,6 @@ map <F11> <C-x>
 "---------------------------------------------------------------------------
 "Set tags search path
 set tags+=~/.vim/tags,../tags,../../tags,../../../tags,../../../../tags,../../../../../tags,../../../../../tags
+
+" --- Command-T
+let g:CommandTMaxHeight = 15
