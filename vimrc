@@ -47,6 +47,10 @@ autocmd! bufwritepost .vimrc source ~/.vimrc
 " C/C++ specific settings
 autocmd FileType c,cpp,cc set cindent comments=sr:/*,mb:*,el:*/,:// cino=>s,e0,n0,f0,{0,}0,^-1s,:0,=s,g0,h1s,p2,t0,+2,(2,)20,*30
 
+" Close automatically the preview window after a completion
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+
 "Restore cursor to file position in previous editing session
 set viminfo='10,\"100,:20,%,n~/.viminfo
 au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm'\"")|else|exe "norm $"|endif|endif
@@ -213,3 +217,6 @@ set tags+=~/.vim/tags,../tags,../../tags,../../../tags,../../../../tags,../../..
 
 " --- Command-T
 let g:CommandTMaxHeight = 15
+
+" --- SuperTab
+let g:SuperTabDefaultCompletionType = "context"
