@@ -40,6 +40,10 @@ Or you can update to the latest version of each plugin bundle by running the fol
 
     $ git submodule foreach git pull origin master
 
+If any update, running:
+
+    $ git submodule update
+
 PLUGINS
 -------
 * [Nerd Tree](https://github.com/vim-scripts/The-NERD-tree): A tree explorer plugin for navigating the filesystem.
