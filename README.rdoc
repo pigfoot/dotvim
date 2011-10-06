@@ -63,3 +63,5 @@ PLUGINS
 * [jellybeans](https://github.com/vim-scripts/jellybeans.vim): A colorful, dark color scheme for Vim
 
 * [NERDCommenter](https://github.com/scrooloose/nerdcommenter): Vim plugin for intensely orgasmic commenting
+
+* [ZenCoding](http://mattn.github.com/zencoding-vim): A plugin for HTML and CSS hi-speed coding.

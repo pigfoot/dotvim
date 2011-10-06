@@ -26,3 +26,6 @@
 	path = bundle/SuperTab
 	url = https://github.com/vim-scripts/SuperTab.git
 	ignore = dirty
+[submodule "bundle/zencoding"]
+	path = bundle/zencoding
+	url = http://github.com/mattn/zencoding-vim.git
