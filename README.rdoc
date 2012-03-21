@@ -66,3 +66,5 @@ PLUGINS
 * [NERDCommenter](https://github.com/scrooloose/nerdcommenter): Vim plugin for intensely orgasmic commenting
 
 * [ZenCoding](http://mattn.github.com/zencoding-vim): A plugin for HTML and CSS hi-speed coding.
+
+* [Go.vim](https://github.com/fsouza/go.vim): Go support on Vim
