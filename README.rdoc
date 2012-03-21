@@ -68,3 +68,5 @@ PLUGINS
 * [ZenCoding](http://mattn.github.com/zencoding-vim): A plugin for HTML and CSS hi-speed coding.
 
 * [Go.vim](https://github.com/fsouza/go.vim): Go support on Vim
+
+* [gocode](https://github.com/nsf/gocode): An autocompletion daemon for the Go programming language
