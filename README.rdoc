@@ -18,6 +18,9 @@ HOW TO INSTALL
     $ ruby extconf.rb
     $ make
 
+3. (Optional, if you want to get Go.vim and gocode enabled)
+    $ go get -u github.com/nsf/gocode
+
 ADD A NEW PLUGIN BUNDLE
 ----------------------
 
