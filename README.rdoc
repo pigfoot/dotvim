@@ -40,7 +40,7 @@ which can be upgraded with `git pull`. For example, to upgrade snipMate
 Or you can update to the latest version of each plugin bundle by running the following:
 
     $ git submodule foreach git pull origin master
-    $ git submodule update
+    $ git commit -m "Update all submodules."
 
 PLUGINS
 -------
