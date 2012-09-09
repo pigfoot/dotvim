@@ -69,4 +69,4 @@ PLUGINS
 
 * [Go.vim](https://github.com/fsouza/go.vim): Go support on Vim
 
-* [gocode](https://github.com/nsf/gocode): An autocompletion daemon for the Go programming language
+* [gocode](https://github.com/undx/vim-gocode): An autocompletion daemon for the Go programming language
