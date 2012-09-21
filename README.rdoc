@@ -25,25 +25,29 @@ ADD A NEW PLUGIN BUNDLE
 ----------------------
 
     $ mkdir ~/.vim
-    $ git submodule add https://github.com/vim-scripts/snipMate.git bundle/snipMate
-    $ git commit -m "Install snipMate.vim bundle as a submodule."
+    $ git submodule add https://github.com/SirVer/ultisnips bundle/ultisnips
+    $ git add
+    $ git commit -m "Install ultimate snippet bundle as a submodule."
 
-    $ git submodule sync   (On client site)
-    $ git submodule update (On client site)
+    $ git submodule update (On other machines)
 
 UPGRADE PLUGIN BUNDLES
 ----------------------
 
-All plugins (except vim-latex) were checked out as git submodules,
-which can be upgraded with `git pull`. For example, to upgrade snipMate
+All plugins were checked out as git submodules, which can be upgraded with `git pull`.
+For example, to upgrade ultimate snippet:
 
-    $ cd ~/.vim/bundle/snipMate
+    $ cd ~/.vim/bundle/ultisnips
     $ git pull
 
 Or you can update to the latest version of each plugin bundle by running the following:
 
     $ git submodule foreach git pull origin master
+    $ git submodule
+    $ git add
     $ git commit -m "Update all submodules."
+
+    $ git submodule update (On other machines)
 
 PLUGINS
 -------
