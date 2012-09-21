@@ -1,27 +1,21 @@
 [submodule "bundle/jellybeans"]
 	path = bundle/jellybeans
 	url = https://github.com/vim-scripts/jellybeans.vim.git
-	ignore = dirty
 [submodule "bundle/nerdtree"]
 	path = bundle/nerdtree
 	url = https://github.com/vim-scripts/The-NERD-tree.git
-	ignore = dirty
 [submodule "bundle/nerdcommenter"]
 	path = bundle/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
-	ignore = dirty
 [submodule "bundle/command-t"]
 	path = bundle/command-t
 	url = https://github.com/vim-scripts/Command-T.git
-	ignore = dirty
 [submodule "bundle/OmniCppComplete"]
 	path = bundle/OmniCppComplete
 	url = https://github.com/vim-scripts/OmniCppComplete.git
-	ignore = dirty
 [submodule "bundle/SuperTab"]
 	path = bundle/SuperTab
 	url = https://github.com/vim-scripts/SuperTab.git
-	ignore = dirty
 [submodule "bundle/zencoding"]
 	path = bundle/zencoding
 	url = http://github.com/mattn/zencoding-vim.git
