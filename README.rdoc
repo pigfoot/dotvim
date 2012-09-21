@@ -54,8 +54,7 @@ PLUGINS
 
 * [Command-T](https://github.com/vim-scripts/Command-T): open and navigate between files with `cmd-t`.
 
-* [snipMate](https://github.com/vim-scripts/snipMate): TextMate-style snippets for Vim
-  `:help snipMate` to see more info.
+* [ultisnips](https://github.com/SirVer/ultisnips): The ultimate snippet solution for python enabled Vim
 
 * [OmniCppComplete](https://github.com/vim-scripts/OmniCppComplete): C/C++ omni-completion with ctags database.
 
