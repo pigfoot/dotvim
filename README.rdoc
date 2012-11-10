@@ -44,7 +44,7 @@ Or you can update to the latest version of each plugin bundle by running the fol
 
     $ git submodule foreach git pull origin master
     $ git submodule
-    $ git add
+    $ git add .
     $ git commit -m "Update all submodules."
 
     $ git submodule update (On other machines)
