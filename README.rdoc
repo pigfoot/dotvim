@@ -49,6 +49,15 @@ Or you can update to the latest version of each plugin bundle by running the fol
 
     $ git submodule update (On other machines)
 
+REMOVE A PLUGIN BUNDLES
+-----------------------
+    $ git rm --cached bundle/ultisnips
+    $ rm -rf bundle/ultisnips
+    $ vim .gitmodules
+    $ vim .git/config
+    $ git add .gitmodules
+    $ git commit -m "Remove ultimate snippet bundle."
+
 PLUGINS
 -------
 * [Nerd Tree](https://github.com/vim-scripts/The-NERD-tree): A tree explorer plugin for navigating the filesystem.

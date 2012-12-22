@@ -28,6 +28,3 @@
 [submodule "bundle/gocode"]
 	path = bundle/gocode
 	url = https://github.com/undx/vim-gocode.git
-[submodule "bundle/ultisnips"]
-	path = bundle/ultisnips
-	url = https://github.com/SirVer/ultisnips
