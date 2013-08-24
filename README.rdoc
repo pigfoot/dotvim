@@ -26,7 +26,7 @@ ADD A NEW PLUGIN BUNDLE
 
     $ mkdir ~/.vim
     $ git submodule add https://github.com/SirVer/ultisnips bundle/ultisnips
-    $ git add
+    $ git add .
     $ git commit -m "Install ultimate snippet bundle as a submodule."
 
     $ git submodule update (On other machines)
@@ -82,3 +82,5 @@ PLUGINS
 * [Go.vim](https://github.com/fsouza/go.vim): Go support on Vim
 
 * [gocode](https://github.com/undx/vim-gocode): An autocompletion daemon for the Go programming language
+
+* [gitgutter](https://github.com/airblade/vim-gitgutter): A Vim plugin which shows a git diff in the gutter
