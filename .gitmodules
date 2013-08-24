@@ -19,9 +19,6 @@
 [submodule "bundle/SuperTab"]
 	path = bundle/SuperTab
 	url = https://github.com/vim-scripts/SuperTab.git
-[submodule "bundle/zencoding"]
-	path = bundle/zencoding
-	url = http://github.com/mattn/zencoding-vim.git
 [submodule "bundle/go.vim"]
 	path = bundle/go.vim
 	url = https://github.com/fsouza/go.vim.git
@@ -31,3 +28,6 @@
 [submodule "bundle/gitgutter"]
 	path = bundle/gitgutter
 	url = https://github.com/airblade/vim-gitgutter
+[submodule "bundle/emmet"]
+	path = bundle/emmet
+	url = https://github.com/mattn/emmet-vim
