@@ -1,6 +1,3 @@
-[submodule "bundle/jellybeans"]
-	path = bundle/jellybeans
-	url = https://github.com/vim-scripts/jellybeans.vim.git
 [submodule "bundle/nerdtree"]
 	path = bundle/nerdtree
 	url = https://github.com/vim-scripts/The-NERD-tree.git
@@ -37,3 +34,6 @@
 [submodule "bundle/airline"]
 	path = bundle/airline
 	url = https://github.com/bling/vim-airline
+[submodule "bundle/colors-solarized"]
+	path = bundle/colors-solarized
+	url = https://github.com/altercation/vim-colors-solarized

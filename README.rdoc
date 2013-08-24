@@ -73,7 +73,7 @@ PLUGINS
 
 * [SuperTab](https://github.com/vim-scripts/SuperTab): Perform all your vim insert mode completions with Tab
 
-* [jellybeans](https://github.com/vim-scripts/jellybeans.vim): A colorful, dark color scheme for Vim
+* [colors-solarized](https://github.com/altercation/vim-colors-solarized): precision colorscheme for the vim text editor
 
 * [NERDCommenter](https://github.com/scrooloose/nerdcommenter): Vim plugin for intensely orgasmic commenting
 

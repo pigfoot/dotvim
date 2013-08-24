@@ -14,7 +14,9 @@ endif
 
 if &t_Co >= 256
     try
-        colorscheme jellybeans
+        set background=dark
+        let g:solarized_termcolors=256
+        colorscheme solarized
     catch
         colorscheme desert
     endtry
