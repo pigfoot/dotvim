@@ -163,9 +163,6 @@ set tags+=~/.vim/tags,../tags,../../tags,../../../tags,../../../../tags,../../..
 " --- Command-T
 let g:CommandTMaxHeight = 15
 
-" --- SuperTab
-let g:SuperTabDefaultCompletionType = "context"
-
 " --- Omni completion.
 set completeopt-=preview
 
