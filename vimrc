@@ -94,61 +94,6 @@ endif
     au FileType Makefile set noexpandtab
 "}
 
-" status line {
-    set ls=2            " set laststatus=2; Always show status line
-    if has('statusline')
-
-        " Status line detail:  /usr/share/vim/vim7/doc/options.txt
-        "
-        " %f                                                   file path
-        " %y                                                   file type between braces (if defined)
-        " %([%R%M]%)                                           read-only, modified and modifiable flags between braces
-        " %{'!'[&ff=='default_file_format']}                   shows a '!' if the file format is not the platform default
-        " %{'$'[!&list]}                                       shows a '*' if in list mode
-        " %{'~'[&pm=='']}                                      shows a '~' if in patchmode
-        " (%{synIDattr(synID(line('.'),col('.'),0),'name')})   only for debug: display the current syntax item name
-        " %=                                                   right-align following items
-        " #%n                                                  buffer number
-        " %l/%L,%c%V                                           line number, total number of lines, and column number
-
-        " vimrc            \   [unix/VIM/utf-8]          sojia:~/.vim\         90,8       86%/104
-        function SetStatusLineStyle_vgod()
-            set statusline=\ %{HasPaste()}%<%-15.25(%f%)%m%r%h\ %w\
-            set statusline+=\ \ \ [%{&ff}/%Y/%{&encoding}]
-            set statusline+=\ \ \ %<%20.30(%{hostname()}:%{CurDir()}%)/
-            set statusline+=%=%-10.(%l,%c%V%)\ %p%%/%L
-        endfunction
-
-        function! CurDir()
-            let curdir = substitute(getcwd(), $HOME, "~", "")
-            return curdir
-        endfunction
-
-        function! HasPaste()
-            if &paste
-                return '[PASTE]'
-            else
-                return ''
-            endif
-        endfunction
-
-        " vimrc [vim][vim,utf-8,unix]                                       #1 62/115,1 [22%]
-        function SetStatusLineStyle()
-            if &stl == '' || &stl =~ 'synID'
-                let &stl="%f %y%([%R%M]%)%{'!'[&ff=='".&ff."']}%{'$'[!&list]}%{'~'[&pm=='']}\[%{strlen(&ft)?&ft:'none'},%{&encoding},%{&fileformat}]%=#%n %l/%L,%c [%P]"
-            else
-                let &stl="%f %y%([%R%M]%)%{'!'[&ff=='".&ff."']}%{'$'[!&list]} (%{synIDattr(synID(line('.'),col('.'),0),'name')})%=#%n %l/%L,%c %p%"
-            endif
-        endfunc
-
-        " Switch between the normal and vim-debug modes in the status line
-        "nmap _ds :call SetStatusLineStyle()<CR>
-        "call SetStatusLineStyle()
-        call SetStatusLineStyle_vgod()
-
-    endif
-"}
-
 "---------------------------------------------------------------------------
 "" Tip #382: Search for <cword> and replace with input() in all open buffers
 "---------------------------------------------------------------------------
@@ -230,3 +175,6 @@ if has("autocmd")
     autocmd User fugitive if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' | nnoremap <buffer> .. :edit %:h<CR> | endif
     autocmd BufReadPost fugitive://* set bufhidden=delete
 endif
+
+" --- airline
+set laststatus=2

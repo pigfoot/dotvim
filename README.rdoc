@@ -86,3 +86,5 @@ PLUGINS
 * [gitgutter](https://github.com/airblade/vim-gitgutter): A Vim plugin which shows a git diff in the gutter
 
 * [fugitive](https://github.com/tpope/vim-fugitive): a Git wrapper so awesome
+
+* [airline](https://github.com/bling/vim-airline): lean & mean statusline for vim that's light as air
