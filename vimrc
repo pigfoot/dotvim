@@ -221,3 +221,6 @@ let g:SuperTabDefaultCompletionType = "context"
 
 " --- Omni completion.
 set completeopt-=preview
+
+" --- gitgutter: let SignColumn background is the same as what jellybeans provides
+highlight SignColumn ctermbg=777
