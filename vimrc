@@ -224,3 +224,9 @@ set completeopt-=preview
 
 " --- gitgutter: let SignColumn background is the same as what jellybeans provides
 highlight SignColumn ctermbg=777
+
+" --- fugitive
+if has("autocmd")
+    autocmd User fugitive if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' | nnoremap <buffer> .. :edit %:h<CR> | endif
+    autocmd BufReadPost fugitive://* set bufhidden=delete
+endif

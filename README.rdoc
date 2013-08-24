@@ -84,3 +84,5 @@ PLUGINS
 * [gocode](https://github.com/undx/vim-gocode): An autocompletion daemon for the Go programming language
 
 * [gitgutter](https://github.com/airblade/vim-gitgutter): A Vim plugin which shows a git diff in the gutter
+
+* [fugitive](https://github.com/tpope/vim-fugitive): a Git wrapper so awesome
