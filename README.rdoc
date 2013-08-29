@@ -11,52 +11,13 @@ HOW TO INSTALL
 
     $ git clone https://github.com/pigfoot/dotvim.git ~/.vim
     $ cd ~/.vim
-    $ git submodule update --init
 
-2. (Optional, if you want Command-T) Compile the Command-T plugin
-    $ cd ~/.vim/bundle/command-t/ruby/command-t
-    $ ruby extconf.rb
-    $ make
+2. Install Vundle
+    $ git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+    $ vim +BundleInstall +qall
 
 3. (Optional, if you want to get Go.vim and gocode enabled)
     $ go get -u github.com/nsf/gocode
-
-ADD A NEW PLUGIN BUNDLE
-----------------------
-
-    $ mkdir ~/.vim
-    $ git submodule add https://github.com/SirVer/ultisnips bundle/ultisnips
-    $ git add .
-    $ git commit -m "Install ultimate snippet bundle as a submodule."
-
-    $ git submodule update (On other machines)
-
-UPGRADE PLUGIN BUNDLES
-----------------------
-
-All plugins were checked out as git submodules, which can be upgraded with `git pull`.
-For example, to upgrade ultimate snippet:
-
-    $ cd ~/.vim/bundle/ultisnips
-    $ git pull
-
-Or you can update to the latest version of each plugin bundle by running the following:
-
-    $ git submodule foreach git pull origin master
-    $ git submodule
-    $ git add .
-    $ git commit -m "Update all submodules."
-
-    $ git submodule update (On other machines)
-
-REMOVE A PLUGIN BUNDLES
------------------------
-    $ git rm --cached bundle/ultisnips
-    $ rm -rf bundle/ultisnips
-    $ vim .gitmodules
-    $ vim .git/config
-    $ git add .gitmodules
-    $ git commit -m "Remove ultimate snippet bundle."
 
 PLUGINS
 -------

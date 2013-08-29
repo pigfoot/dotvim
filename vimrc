@@ -1,8 +1,37 @@
-" For pathogen.vim: auto load all plugins in .vim/bundle, and it should turn
-" off filetype otherwise ftdetect wouldn't work.
-filetype off
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+" Vundle
+set nocompatible " not compatible with the old-fashion vi mode
+filetype off     " required!
+
+" http://www.erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc/
+" Setting up Vundle - the vim plugin bundler
+let iCanHazVundle=1
+let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+if !filereadable(vundle_readme)
+    echo "Installing Vundle.."
+    echo ""
+    silent !mkdir -p ~/.vim/bundle
+    silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+    let iCanHazVundle=0
+endif
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required!
+Bundle 'gmarik/vundle'
+
+" My Bundles here:
+"
+" original repos on github
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'nanotech/jellybeans.vim'
+Bundle 'kien/ctrlp.vim'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'airblade/vim-gitgutter'
+Bundle 'tpope/vim-fugitive'
+Bundle 'bling/vim-airline'
+Bundle 'ervandew/supertab'
 
 " General Settings
 syntax on               " syntax highlight
@@ -108,13 +137,16 @@ endfun
 "---------------------------------------------------------------------------
 " Trim trailing spaces
 "---------------------------------------------------------------------------
-function! RemoveTrailingSpace()
-    "if $VIM_HATE_SPACE_ERRORS != '0' && (&filetype == 'c' || &filetype == 'cpp' || &filetype == 'vim')
-    if $VIM_HATE_SPACE_ERRORS != '0'
-        normal m`
-        silent! :%s/\s\+$//e
-        normal ``
-    endif
+function! StripTrailingWhitespaces()
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " Do the business:
+    %s/\s\+$//e
+    " Clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
 endfunction
 
 "---------------------------------------------------------------------------
@@ -136,7 +168,7 @@ endfun
 "let g:mapleader=","
 
 "Trim all trailing spaces by \r
-map <leader>r :call RemoveTrailingSpace()<CR>
+map <leader>r :call StripTrailingWhitespaces()<CR>
 
 "replace the current word in all opened buffers by \R
 map <leader>R :call Replace()<CR>
