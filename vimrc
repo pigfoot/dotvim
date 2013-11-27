@@ -26,6 +26,7 @@ Bundle 'gmarik/vundle'
 " original repos on github
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'nanotech/jellybeans.vim'
+Bundle 'scrooloose/syntastic'
 Bundle 'kien/ctrlp.vim'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'airblade/vim-gitgutter'
@@ -43,6 +44,7 @@ endif
 
 if &t_Co >= 256
     try
+        "colorscheme jellybeans
         set background=dark
         let g:solarized_termcolors=256
         colorscheme solarized
@@ -50,7 +52,13 @@ if &t_Co >= 256
         colorscheme desert
     endtry
 else
-    colorscheme desert
+    try
+        set background=dark
+        let g:solarized_termcolors=256
+        colorscheme solarized
+    catch
+        colorscheme desert
+    endtry
 endif
 
 set hlsearch            " search highlighting
@@ -191,9 +199,6 @@ map <F11> <C-x>
 "---------------------------------------------------------------------------
 "Set tags search path
 set tags+=~/.vim/tags,../tags,../../tags,../../../tags,../../../../tags,../../../../../tags,../../../../../tags
-
-" --- Command-T
-let g:CommandTMaxHeight = 15
 
 " --- Omni completion.
 set completeopt-=preview
