@@ -38,7 +38,7 @@ Bundle 'ervandew/supertab'
 syntax on               " syntax highlight
 
 " screen with --enable-colors256 (Gentoo does this by default!)
-if ($TERM == 'screen' || $TERM == 'xterm')
+if ($TERM == 'screen' || $TERM == 'xterm' || $TERM == 'xterm-256color')
     set t_Co=256
 endif
 
