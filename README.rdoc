@@ -8,44 +8,53 @@ HOW TO INSTALL
 --------------
 
 1. Check out from github
-
     $ git clone https://github.com/pigfoot/dotvim.git ~/.vim
-    $ cd ~/.vim
+    $ ln -s ~/.vim/vimrc ~/.vimrc
 
 2. Install Vundle
-    $ git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-    $ vim +BundleInstall +qall
+    $ git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
-3. (Optional, if you want to get Go.vim and gocode enabled)
-    $ go get -u github.com/nsf/gocode
+3. (Optional) DisableYouCompleteMe by commenting out "Plugin 'Valloric/YouCompleteMe'" in ~/.vimrc and goto next step
+
+3.1 Install YouCompleteMe
+    $ cd ~/.vim/bundle/YouCompleteMe
+
+    # Compiling YCM with semantic support for C-family languages (C/C++/ObjC)
+    $ ./install.sh --clang-completer (prebuilt libclang)
+    $ ./install.sh --clang-completer --system-libclang (system libclang)
+
+    # Or compiling YCM without semantic support for C-family languages
+    $ ./install.sh
+
+    # check library
+    $ ldd ~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycm_core.so
+
+4. (Optional) Disable vim-go by comment out "Plugin 'fatih/vim-go'" in ~/.vimrc
+
+5. Install all plugins: Launch vim and run :PluginInstall
+
 
 PLUGINS
 -------
-* [Nerd Tree](https://github.com/vim-scripts/The-NERD-tree): A tree explorer plugin for navigating the filesystem.
+* [colors-solarized](https://github.com/altercation/vim-colors-solarized): precision colorscheme for the vim text editor
+
+* [jellybeans](https://github.com/nanotech/jellybeans.vim): A colorful, dark color scheme for Vim
+
+* [airline](https://github.com/bling/vim-airline): lean & mean statusline for vim that's light as air
+
+* [YouCompleteMe](https://github.com/Valloric/YouCompleteMe): A code-completion engine for Vim
+
+* [ultisnips](https://github.com/SirVer/ultisnips): The ultimate snippet solution for python enabled Vim
+
+* [vim-go](https://github.com/fatih/vim-go.git): Go development plugin for Vim
+
+* [ctrlp.vim](https://github.com/kien/ctrlp.vim): Fuzzy file, buffer, mru, tag, etc finder
+
+* [Nerd Tree](https://github.com/scrooloose/nerdtree): A tree explorer plugin for navigating the filesystem.
   Useful commands:
   `:Bookmark [name]` - bookmark any directory as name
   `:NERDTree [name]` - open the bookmark [name] in Nerd Tree
 
-* [Command-T](https://github.com/vim-scripts/Command-T): open and navigate between files with `cmd-t`.
-
-* [ultisnips](https://github.com/SirVer/ultisnips): The ultimate snippet solution for python enabled Vim
-
-* [OmniCppComplete](https://github.com/vim-scripts/OmniCppComplete): C/C++ omni-completion with ctags database.
-
-* [SuperTab](https://github.com/vim-scripts/SuperTab): Perform all your vim insert mode completions with Tab
-
-* [colors-solarized](https://github.com/altercation/vim-colors-solarized): precision colorscheme for the vim text editor
-
-* [NERDCommenter](https://github.com/scrooloose/nerdcommenter): Vim plugin for intensely orgasmic commenting
-
-* [Emmet](https://github.com/mattn/emmet-vim): Emmet (previously known as Zen Coding): A plugin for HTML and CSS hi-speed coding.
-
-* [Go.vim](https://github.com/fsouza/go.vim): Go support on Vim
-
-* [gocode](https://github.com/undx/vim-gocode): An autocompletion daemon for the Go programming language
-
 * [gitgutter](https://github.com/airblade/vim-gitgutter): A Vim plugin which shows a git diff in the gutter
 
 * [fugitive](https://github.com/tpope/vim-fugitive): a Git wrapper so awesome
-
-* [airline](https://github.com/bling/vim-airline): lean & mean statusline for vim that's light as air

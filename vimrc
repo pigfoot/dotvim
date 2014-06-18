@@ -1,41 +1,58 @@
-" Vundle
-set nocompatible " not compatible with the old-fashion vi mode
-filetype off     " required!
+"---------------------------------------------------------------------------
+" Vundle Settings
+"---------------------------------------------------------------------------
+set nocompatible            " not compatible with the old-fashion vi mode
+filetype off                " required!
 
-" http://www.erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc/
-" Setting up Vundle - the vim plugin bundler
-let iCanHazVundle=1
-let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
-if !filereadable(vundle_readme)
-    echo "Installing Vundle.."
-    echo ""
-    silent !mkdir -p ~/.vim/bundle
-    silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
-    let iCanHazVundle=0
-endif
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins call vundle#begin('~/some/path/here')
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" let Vundle manage Vundle, required!
+Bundle 'gmarik/Vundle.vim'
 
-" let Vundle manage Vundle
-" required!
-Bundle 'gmarik/vundle'
+" Theme Bundles
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'nanotech/jellybeans.vim'
 
-" My Bundles here:
+" UI Bundles
+Plugin 'bling/vim-airline'
+
+" Programming efficiency Bundles
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'fatih/vim-go'
+
+" file management Bundles
+Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/nerdtree'
+
+" CSV Bundles
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
+
+" All of your Plugins must be added before the following line
+call vundle#end()           " required
+filetype plugin indent on   " required
+
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
 "
-" original repos on github
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'nanotech/jellybeans.vim'
-Bundle 'scrooloose/syntastic'
-Bundle 'kien/ctrlp.vim'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'tpope/vim-fugitive'
-Bundle 'bling/vim-airline'
-Bundle 'ervandew/supertab'
+" Brief help
+" :PluginList          - list configured plugins
+" :PluginInstall(!)    - install (update) plugins
+" :PluginSearch(!) foo - search (or refresh cache first) for foo
+" :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
 
+"---------------------------------------------------------------------------
 " General Settings
-syntax on               " syntax highlight
+"---------------------------------------------------------------------------
+syntax on                   " syntax highlight
 
 " screen with --enable-colors256 (Gentoo does this by default!)
 if ($TERM == 'screen' || $TERM == 'xterm' || $TERM == 'xterm-256color')
@@ -44,7 +61,6 @@ endif
 
 if &t_Co >= 256
     try
-        "colorscheme jellybeans
         set background=dark
         let g:solarized_termcolors=256
         colorscheme solarized
@@ -61,24 +77,20 @@ else
     endtry
 endif
 
-set hlsearch            " search highlighting
-set nocompatible        " not compatible with the old-fashion vi mode
-set bs=2                " allow backspacing over everything in insert mode
-set history=50          " keep 50 lines of command line history
-set ruler               " show the cursor position all the time
-set autoread            " auto read when file is changed from outside
-set autoindent          " auto indentation
-set incsearch           " incremental search
-set nobackup            " no *~ backup files
-set copyindent          " copy the previous indentation on autoindenting
-set ignorecase          " ignore case when searching
-set smartcase           " ignore case if search pattern is all lowercase,case-sensitive otherwise
-set smarttab            " insert tabs on the start of a line according to context
+set hlsearch                " search highlighting
+set nocompatible            " not compatible with the old-fashion vi mode
+set bs=2                    " allow backspacing over everything in insert mode
+set history=50              " keep 50 lines of command line history
+set ruler                   " show the cursor position all the time
+set autoread                " auto read when file is changed from outside
+set autoindent              " auto indentation
+set incsearch               " incremental search
+set nobackup                " no *~ backup files
+set copyindent              " copy the previous indentation on autoindenting
+set ignorecase              " ignore case when searching
+set smartcase               " ignore case if search pattern is all lowercase,case-sensitive otherwise
+set smarttab                " insert tabs on the start of a line according to context
 set nowrap
-
-filetype on             " Enable filetype detection
-filetype indent on      " Enable filetype-specific indenting
-filetype plugin on      " Enable filetype-specific plugins
 
 " auto reload vimrc when editing it
 autocmd! bufwritepost .vimrc source ~/.vimrc
@@ -88,7 +100,7 @@ autocmd! bufwritepost .vimrc source ~/.vimrc
 " C/C++ specific settings
 autocmd FileType c,cpp,cc set cindent comments=sr:/*,mb:*,el:*/,:// cino=>s,e0,n0,f0,{0,}0,^-1s,:0,=s,g0,h1s,p2,t0,+2,(2,)20,*30
 
-"Restore cursor to file position in previous editing session
+" Restore cursor to file position in previous editing session
 set viminfo='10,\"100,:20,%,n~/.viminfo
 au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm'\"")|else|exe "norm $"|endif|endif
 
@@ -101,8 +113,8 @@ if has("multi_byte")
     set termencoding=utf-8
     set fileencoding=utf-8
     set fileencodings=utf-8,big5,gbk,ucs-bom,latin1,default
-    set ffs=unix,dos,mac    "set fileformats=unix,dos,mac
-    set ff=unix             "set fileformat=unix
+    set ffs=unix,dos,mac    " set fileformats=unix,dos,mac
+    set ff=unix             " set fileformat=unix
 
     fun! ViewUTF8()
         set encoding=utf-8
@@ -125,10 +137,10 @@ else
 endif
 
 " TAB setting {
-    set et              " set expandtab; replace <TAB> with spaces
-    set ts=4            " set tabstop=4
-    set sts=4           " set softtabstop=4
-    set sw=4            " set shiftwidth=4
+    set et                  " set expandtab; replace <TAB> with spaces
+    set ts=4                " set tabstop=4
+    set sts=4               " set softtabstop=4
+    set sw=4                " set shiftwidth=4
 
     au FileType Makefile set noexpandtab
 "}
@@ -172,8 +184,8 @@ endfun
 " USEFUL SHORTCUTS
 "---------------------------------------------------------------------------
 " set leader from default \\ to ,
-"let mapleader=","
-"let g:mapleader=","
+let mapleader = ","
+let g:mapleader = ","
 
 "Trim all trailing spaces by \r
 map <leader>r :call StripTrailingWhitespaces()<CR>
@@ -197,14 +209,42 @@ map <F11> <C-x>
 "---------------------------------------------------------------------------
 "" PLUGIN SETTINGS
 "---------------------------------------------------------------------------
+
+" Handle all issues between YCM and UltiSnips
+let g:UltiSnipsExpandTrigger        = "<tab>"
+let g:UltiSnipsJumpForwardTrigger   = "<tab>"
+function! g:UltiSnips_Complete()
+    call UltiSnips#ExpandSnippet()
+    if g:ulti_expand_res == 0
+        if pumvisible()
+            return "\<C-n>"
+        else
+            call UltiSnips#JumpForwards()
+            if g:ulti_jump_forwards_res == 0
+               return "\<TAB>"
+            endif
+        endif
+    endif
+    return ""
+endfunction
+au InsertEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
+
+" YouCompleteMe
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_min_num_of_chars_for_completion = 1
+let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:syntastic_always_populate_loc_list = 1
+
 "Set tags search path
-set tags+=~/.vim/tags,../tags,../../tags,../../../tags,../../../../tags,../../../../../tags,../../../../../tags
+"set tags+=~/.vim/tags,../tags,../../tags,../../../tags,../../../../tags,../../../../../tags,../../../../../tags
 
 " --- Omni completion.
 set completeopt-=preview
 
 " --- gitgutter: let SignColumn background is the same as what jellybeans provides
-highlight SignColumn ctermbg=777
+highlight SignColumn ctermbg = 777
 
 " --- fugitive
 if has("autocmd")
@@ -214,3 +254,10 @@ endif
 
 " --- airline
 set laststatus=2
+
+" --- CtrlP
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ }
