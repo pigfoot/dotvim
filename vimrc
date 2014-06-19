@@ -244,7 +244,8 @@ let g:syntastic_always_populate_loc_list = 1
 set completeopt-=preview
 
 " --- gitgutter: let SignColumn background is the same as what jellybeans provides
-highlight SignColumn ctermbg = 777
+let g:gitgutter_highlight_lines = 1
+highlight SignColumn ctermbg = 234
 
 " --- fugitive
 if has("autocmd")
