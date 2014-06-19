@@ -245,7 +245,7 @@ set completeopt-=preview
 
 " --- gitgutter: let SignColumn background is the same as what jellybeans provides
 let g:gitgutter_highlight_lines = 1
-highlight SignColumn ctermbg = 234
+highlight SignColumn ctermbg=234 guibg=#002b36
 
 " --- fugitive
 if has("autocmd")
