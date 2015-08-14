@@ -26,6 +26,9 @@ HOW TO INSTALL
     # Or compiling YCM without semantic support for C-family languages
     $ ./install.sh
 
+    # Or compiling Go semantic completion engine
+    $ ./install.sh --clang-completer --gocode-completer
+
     # check library
     $ ldd ~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycm_core.so
 
