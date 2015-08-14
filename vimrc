@@ -255,6 +255,7 @@ endif
 
 " --- airline
 set laststatus=2
+let g:airline_powerline_fonts = 1
 
 " --- CtrlP
 let g:ctrlp_show_hidden = 1
