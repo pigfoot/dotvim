@@ -20,14 +20,14 @@ HOW TO INSTALL
     $ cd ~/.vim/bundle/YouCompleteMe
 
     # Compiling YCM with semantic support for C-family languages (C/C++/ObjC)
-    $ ./install.sh --clang-completer (prebuilt libclang)
-    $ ./install.sh --clang-completer --system-libclang (system libclang)
+    $ ./install.py --clang-completer (prebuilt libclang)
+    $ ./install.py --clang-completer --system-libclang (system libclang)
 
     # Or compiling YCM without semantic support for C-family languages
-    $ ./install.sh
+    $ ./install.py
 
     # Or compiling Go semantic completion engine
-    $ ./install.sh --clang-completer --gocode-completer
+    $ ./install.py --clang-completer --gocode-completer
 
     # check library
     $ ldd ~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycm_core.so
