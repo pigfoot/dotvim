@@ -26,13 +26,14 @@ HOW TO INSTALL
     # Or compiling YCM without semantic support for C-family languages
     $ ./install.py
 
-    # Or compiling Go semantic completion engine
-    $ ./install.py --clang-completer --gocode-completer
+    # Or additionally compiling Go semantic completion engine
+    $ ./install.py --clang-completer --system-libclang --gocode-completer
 
     # check library
     $ ldd ~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycm_core.so
 
 4. (Optional) Disable vim-go by comment out "Plugin 'fatih/vim-go'" in ~/.vimrc
+   If you would like to enable vim-go, please launch vim and run :GoInstallBinaries
 
 5. Install all plugins: Launch vim and run :PluginInstall
 
