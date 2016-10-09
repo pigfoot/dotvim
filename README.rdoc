@@ -14,9 +14,29 @@ HOW TO INSTALL
 2. Install Vundle
     $ git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
-3. (Optional) DisableYouCompleteMe by commenting out "Plugin 'Valloric/YouCompleteMe'" in ~/.vimrc and goto next step
+3. (Optional) Disable vim-go by comment out "Plugin 'fatih/vim-go'" in ~/.vimrc
+   Here is following action if you would like to use fatih/vim-go
+   Or you can install manually by install gocode, godef, and goimports
 
-3.1 Install YouCompleteMe
+   3.1 (Easy)
+     install related tools by launching vim and run :GoInstallBinaries
+
+   3.2 (Expert)
+     $ sudo emerge -av dev-go/gocode \
+                       dev-util/gometalinter \
+                       dev-util/go-tools \
+                       dev-util/golint \
+                       dev-util/godef \
+                       dev-util/errcheck \
+                       dev-util/gotags \
+                       dev-go/asmfmt \
+                       app-misc/motion \
+                       app-misc/gogetdoc \
+                       app-misc/impl
+
+4. (Optional) DisableYouCompleteMe by commenting out "Plugin 'Valloric/YouCompleteMe'" in ~/.vimrc and goto next step
+
+  4.1 Install YouCompleteMe
     $ cd ~/.vim/bundle/YouCompleteMe
 
     # Compiling YCM with semantic support for C-family languages (C/C++/ObjC)
