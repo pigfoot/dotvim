@@ -24,7 +24,7 @@ HOW TO INSTALL
    3.2 (Expert)
      $ sudo emerge -av dev-go/gocode \
                        dev-util/gometalinter \
-                       dev-util/go-tools \
+                       dev-go/go-tools \
                        dev-util/golint \
                        dev-util/godef \
                        dev-util/errcheck \
