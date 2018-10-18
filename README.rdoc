@@ -52,10 +52,12 @@ HOW TO INSTALL
     $ ./install.py --clang-completer --gocode-completer
 
     # My setting
-    $ LD_LIBRARY_PATH=$(equery f sys-devel/clang | sed -rn '/libclang.so$/s#/libclang.so##p') ./install.py --clang-completer --system-libclang --gocode-completer
+    $ (Linux) LD_LIBRARY_PATH=$(equery f sys-devel/clang | sed -rn '/libclang.so$/s#/libclang.so##p') ./install.py --clang-completer --system-libclang --gocode-completer
+    $ (MacOS) ./install.py --clang-completer --system-libclang --gocode-completer
 
     # check library
-    $ ldd ~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycm_core.so
+    $ (Linux) ldd ~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycm_core.so
+    $ (MacOS) otool -L ~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycm_core.so
 
 4. (Optional) Disable vim-go by comment out "Plugin 'fatih/vim-go'" in ~/.vimrc
    If you would like to enable vim-go, please launch vim and run :GoInstallBinaries
