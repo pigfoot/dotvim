@@ -41,13 +41,18 @@ HOW TO INSTALL
 
     # Compiling YCM with semantic support for C-family languages (C/C++/ObjC)
     $ ./install.py --clang-completer (prebuilt libclang)
-    $ ./install.py --clang-completer --system-libclang (system libclang)
+
+    # Append system clang path (system libclang)
+    $ LD_LIBRARY_PATH=$(equery f sys-devel/clang | sed -rn '/libclang.so$/s#/libclang.so##p') ./install.py --clang-completer --system-libclang
 
     # Or compiling YCM without semantic support for C-family languages
     $ ./install.py
 
     # Or additionally compiling Go semantic completion engine
-    $ ./install.py --clang-completer --system-libclang --gocode-completer
+    $ ./install.py --clang-completer --gocode-completer
+
+    # My setting
+    $ LD_LIBRARY_PATH=$(equery f sys-devel/clang | sed -rn '/libclang.so$/s#/libclang.so##p') ./install.py --clang-completer --system-libclang --gocode-completer
 
     # check library
     $ ldd ~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycm_core.so
