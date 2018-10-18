@@ -87,3 +87,5 @@ PLUGINS
 * [gitgutter](https://github.com/airblade/vim-gitgutter): A Vim plugin which shows a git diff in the gutter
 
 * [fugitive](https://github.com/tpope/vim-fugitive): a Git wrapper so awesome
+
+* [vim-vue](https://github.com/posva/vim-vue): Syntax Highlight for Vue.js components
