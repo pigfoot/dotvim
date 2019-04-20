@@ -24,7 +24,7 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'fatih/vim-go'
-Plugin 'nsf/gocode', {'rtp': 'vim/'}
+Plugin 'stamblerre/gocode', {'rtp': 'vim/'}
 
 " file management Bundles
 Plugin 'kien/ctrlp.vim'
@@ -269,6 +269,7 @@ let g:ctrlp_custom_ignore = {
   \ }
 
 " --- vim-go
+let g:go_bin_path = $HOME.'/.vim/bundle/gopath/bin'
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
