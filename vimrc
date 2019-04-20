@@ -4,54 +4,42 @@
 set nocompatible            " not compatible with the old-fashion vi mode
 filetype off                " required!
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins call vundle#begin('~/some/path/here')
+" Automatic installation for vim-plug
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-" let Vundle manage Vundle, required!
-Bundle 'gmarik/Vundle.vim'
+" set the runtime path to include vim-plug and initialize
+call plug#begin('~/.vim/plugged')
 
 " Theme Bundles
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'nanotech/jellybeans.vim'
+Plug 'altercation/vim-colors-solarized'
+Plug 'nanotech/jellybeans.vim'
 
 " UI Bundles
-Plugin 'bling/vim-airline'
+Plug 'bling/vim-airline'
 
 " Programming efficiency Bundles
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'fatih/vim-go'
-Plugin 'stamblerre/gocode', {'rtp': 'vim/'}
+Plug 'Valloric/YouCompleteMe'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " file management Bundles
-Plugin 'kien/ctrlp.vim'
-Plugin 'scrooloose/nerdtree'
+Plug 'kien/ctrlp.vim'
+Plug 'scrooloose/nerdtree'
 
 " CSV Bundles
-Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 
 " Vuejs Bundles
-Plugin 'posva/vim-vue'
+Plug 'posva/vim-vue'
 
 " All of your Plugins must be added before the following line
-call vundle#end()           " required
-filetype plugin indent on   " required
-
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList          - list configured plugins
-" :PluginInstall(!)    - install (update) plugins
-" :PluginSearch(!) foo - search (or refresh cache first) for foo
-" :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+call plug#end()
 
 "---------------------------------------------------------------------------
 " General Settings
@@ -269,11 +257,12 @@ let g:ctrlp_custom_ignore = {
   \ }
 
 " --- vim-go
-let g:go_bin_path = $HOME.'/.vim/bundle/gopath/bin'
+let g:go_bin_path = $HOME.'/.vim/gopath/bin'
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
-let g:go_fmt_command = "goimports"
+let g:go_fmt_command = 'goimports'
+let g:go_def_mode = 'godef'
 let g:go_get_update = 0

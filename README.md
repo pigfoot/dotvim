@@ -11,20 +11,17 @@ HOW TO INSTALL
     $ git clone https://github.com/pigfoot/dotvim.git ~/.vim
     $ ln -s ~/.vim/vimrc ~/.vimrc
 
-2. Install Vundle
-    $ git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+2. (Optional) DisableYouCompleteMe by commenting out "Plug 'Valloric/YouCompleteMe'" in ~/.vimrc and goto next step
 
-3. (Optional) DisableYouCompleteMe by commenting out "Plugin 'Valloric/YouCompleteMe'" in ~/.vimrc and goto next step
-
-  3.1 Install YouCompleteMe
-    $ cd ~/.vim/bundle/YouCompleteMe
+  2.1 Install YouCompleteMe
+    $ cd ~/.vim/plugged/YouCompleteMe/
 
     # Let ycmd to adopt stamblerre/gocde
     # https://magodo.github.io/vim-go/
     $ cd third_party/ycmd/third_party/go/src/github.com/ \
       && mkdir -p stamblerre && cd stamblerre \
       && git clone git@github.com:stamblerre/gocode.git \
-      && export GOPATH=$HOME/.vim/bundle/YouCompleteMe/third_party/ycmd/third_party/go \
+      && export GOPATH=$HOME/.vim/plugged/YouCompleteMe/third_party/ycmd/third_party/go \
       && cd gocode \
       && go get golang.org/x/tools/go/packages \
       && cd ../../../../../../../../ \
@@ -48,10 +45,10 @@ HOW TO INSTALL
     $ (MacOS) ./install.py --clang-completer --system-libclang --gocode-completer
 
     # check library
-    $ (Linux) ldd ~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycm_core.so
-    $ (MacOS) otool -L ~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycm_core.so
+    $ (Linux) ldd ~/.vim/plugged/YouCompleteMe/third_party/ycmd/ycm_core.so
+    $ (MacOS) otool -L ~/.vim/plugged/YouCompleteMe/third_party/ycmd/ycm_core.so
 
-4. (Optional) Disable vim-go by comment out "Plugin 'fatih/vim-go'" in ~/.vimrc
+3. (Optional) Disable vim-go by comment out "Plugin 'fatih/vim-go'" in ~/.vimrc
    Here is following action if you would like to use fatih/vim-go
    Or you can install manually by install gocode, godef, and goimports
 
@@ -73,7 +70,7 @@ HOW TO INSTALL
                        app-misc/gogetdoc \
                        app-misc/impl
 
-5. Install all plugins: Launch vim and run :PluginInstall
+5. Install all plugins: Launch vim and run :PlugInstall
 
 
 PLUGINS
