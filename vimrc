@@ -22,7 +22,18 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'bling/vim-airline'
 
 " Programming efficiency Bundles
-Plug 'Valloric/YouCompleteMe'
+if has('nvim')
+  Plug 'ncm2/ncm2'
+else
+  Plug 'ncm2/ncm2'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+Plug 'ncm2/ncm2-match-highlight'
+Plug 'ncm2/ncm2-ultisnips'
+Plug 'ncm2/ncm2-go'
+Plug 'ncm2/ncm2-pyclang'
+
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -222,7 +233,7 @@ endfunction
 au InsertEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
 
 " YouCompleteMe
-let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_min_num_of_chars_for_completion = 1
 let g:ycm_seed_identifiers_with_syntax = 1
@@ -233,7 +244,7 @@ let g:syntastic_always_populate_loc_list = 1
 "set tags+=~/.vim/tags,../tags,../../tags,../../../tags,../../../../tags,../../../../../tags,../../../../../tags
 
 " --- Omni completion.
-set completeopt-=preview
+"set completeopt-=preview
 
 " --- gitgutter: let SignColumn background is the same as what jellybeans provides
 let g:gitgutter_highlight_lines = 1
@@ -266,3 +277,22 @@ let g:go_highlight_build_constraints = 1
 let g:go_fmt_command = 'goimports'
 let g:go_def_mode = 'godef'
 let g:go_get_update = 0
+
+" --- ncm2
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
+set shortmess+=c
+
+inoremap <c-c> <ESC>
+
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <silent> <expr> <CR> ((pumvisible() && empty(v:completed_item)) ?  "\<c-y>\<cr>" : (!empty(v:completed_item) ? ncm2_ultisnips#expand_or("", 'n') : "\<CR>" ))
+
+" c-j c-k for moving in snippet
+imap <expr> <c-u> ncm2_ultisnips#expand_or("\<Plug>(ultisnips_expand)", 'm')
+smap <c-u> <Plug>(ultisnips_expand)
+let g:UltiSnipsExpandTrigger		= "<Plug>(ultisnips_expand)"
+let g:UltiSnipsJumpForwardTrigger	= "<c-j>"
+let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
+let g:UltiSnipsRemoveSelectModeMappings = 0
