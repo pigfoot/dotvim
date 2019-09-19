@@ -12,9 +12,9 @@ HOW TO INSTALL
     $ ln -s ~/.vim/vimrc ~/.vimrc
     $ mkdir -p ~/.config/nvim
     $ cat <<EOF > ~/.config/nvim/init.vim
-set runtimepath^=~/.config/vim runtimepath+=~/.config/vim/after
+set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
-source ~/.config/vim/vimrc
+source ~/.vim/vimrc
 EOF
 
 2. (Optional) Disable vim-go by comment out "Plugin 'fatih/vim-go'" in ~/.vimrc
