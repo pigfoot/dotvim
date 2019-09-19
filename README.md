@@ -10,6 +10,12 @@ HOW TO INSTALL
 1. Check out from github
     $ git clone https://github.com/pigfoot/dotvim.git ~/.vim
     $ ln -s ~/.vim/vimrc ~/.vimrc
+    $ mkdir -p ~/.config/nvim
+    $ cat <<EOF > ~/.config/nvim/init.vim
+set runtimepath^=~/.config/vim runtimepath+=~/.config/vim/after
+let &packpath = &runtimepath
+source ~/.config/vim/vimrc
+EOF
 
 2. (Optional) Disable vim-go by comment out "Plugin 'fatih/vim-go'" in ~/.vimrc
    Here is following action if you would like to use fatih/vim-go
