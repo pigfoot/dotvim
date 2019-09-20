@@ -20,7 +20,8 @@ filetype plugin indent on
 "endif
 
 let my_plug_path    = $HOME.'/.vim/autoload/plug.vim'
-let my_plugins_path = $HOME.'/.cache/vim/plugged'
+let my_cache_path   = $HOME.'/.cache/vim'
+let my_plugins_path = my_cache_path . '/plugged'
 
 if empty(glob(my_plug_path))
   silent execute '!curl -fLo ' . my_plug_path . ' --create-dirs
@@ -36,8 +37,8 @@ if !has('nvim')
 endif
 
 " Scheme
-Plug 'altercation/vim-colors-solarized'
-Plug 'itchyny/lightline.vim'
+Plug 'lifepillar/vim-solarized8'
+Plug 'vim-airline/vim-airline'
 
 " Generic purpose
 Plug 'tpope/vim-sensible'
@@ -47,12 +48,13 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'airblade/vim-gitgutter'
+Plug 'mhinz/vim-signify'
 Plug 'luochen1990/rainbow'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'mbbill/undotree'
 
 call plug#end()
 
@@ -75,6 +77,22 @@ augroup common
 augroup end
 " }} autocmd "
 
+" For tmux user, plese set the following option in .tmux.conf
+" set -g  default-terminal    "tmux-256color"
+" set -ga terminal-overrides  ",xterm-256color:Tc"
+if has("termguicolors")
+  "if !has('nvim')
+    "" fix bug for vim
+    "set t_8f=[38;2;%lu;%lu;%lum
+    "set t_8b=[48;2;%lu;%lu;%lum
+  "endif
+
+  " enable true color for GUI
+  if has('gui_running')
+    set termguicolors
+  endif
+endif
+
 "---------------------------------------------------------------------------
 " Key mappings
 "---------------------------------------------------------------------------
@@ -85,23 +103,14 @@ let g:mapleader = ","
 "" PLUGIN SETTINGS
 "---------------------------------------------------------------------------
 
-if has_key(g:plugs, 'vim-colors-solarized')
-  if &t_Co >= 256
-    try
-      set background=dark
-      let g:solarized_termcolors=256
-      let g:solarized_termtrans=0
-      colorscheme solarized
-    catch
-      colorscheme desert
-    endtry
-  else
-    colorscheme desert
-  endif
+if has_key(g:plugs, 'vim-solarized8')
+  set background=dark
+  colorscheme solarized8
 endif
 
-if has_key(g:plugs, 'lightline.vim')
-  let g:lightline = { 'colorscheme': 'wombat' }
+if has_key(g:plugs, 'vim-airline')
+  let g:airline_powerline_fonts = 1
+  let g:airline_detect_paste=1
   if !has('nvim')
     " To display the status line always
     set laststatus=2
@@ -109,7 +118,7 @@ if has_key(g:plugs, 'lightline.vim')
 endif
 
 if has_key(g:plugs, 'coc.nvim')
-  let $PATH .= ':' . my_plugins_path . '/../gopath/bin'
+  let $PATH .= ':' . my_cache_path . '/gopath/bin'
   let g:coc_global_extensions = [
     \'coc-css', 'coc-json', 'coc-go', 'coc-yaml'
     \]
@@ -135,7 +144,7 @@ if has_key(g:plugs, 'coc.nvim')
 endif
 
 if has_key(g:plugs, 'vim-go')
-  let g:go_bin_path = my_plugins_path . '/../gopath/bin'
+  let g:go_bin_path = my_cache_path . '/gopath/bin'
   let g:go_highlight_functions = 1
   let g:go_highlight_methods = 1
   let g:go_highlight_structs = 1
@@ -152,18 +161,7 @@ endif
 if has_key(g:plugs, 'vim-snippets')
 endif
 
-if has_key(g:plugs, 'vim-gitgutter')
-  " let SignColumn background is the same as what jellybeans provides
-  let g:gitgutter_highlight_lines = 1
-
-  " To turn off vim-gitgutter by default
-  "let g:gitgutter_enabled = 0
-
-  " To turn off signs by default
-  "let g:gitgutter_signs = 0
-
-  " Disable sign column
-  "set signcolumn=yes
+if has_key(g:plugs, 'vim-signify')
 endif
 
 if has_key(g:plugs, 'rainbow')
@@ -192,4 +190,14 @@ if has_key(g:plugs, 'vim-repeat')
 endif
 
 if has_key(g:plugs, 'vim-better-whitespace')
+endif
+
+if has_key(g:plugs, 'undotree')
+  let my_undodir = my_cache_path.'/.undodir'
+
+  if !isdirectory(my_undodir)
+    silent call mkdir (my_undodir, 'p')
+  endif
+  exec 'set undodir='.my_undodir
+  set undofile
 endif
