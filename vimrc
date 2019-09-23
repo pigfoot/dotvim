@@ -21,11 +21,11 @@ filetype plugin indent on
 
 let my_plug_path    = $HOME.'/.vim/autoload/plug.vim'
 let my_cache_path   = $HOME.'/.cache/vim'
-let my_plugins_path = my_cache_path . '/plugged'
+let my_plugins_path = my_cache_path.'/plugged'
 
 if empty(glob(my_plug_path))
-  silent execute '!curl -fLo ' . my_plug_path . ' --create-dirs
-      \  "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"'
+  silent execute '!curl -fLo '.my_plug_path.' --create-dirs
+    \  "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"'
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
@@ -44,7 +44,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-sensible'
 
 " Development
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -55,6 +54,12 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'mbbill/undotree'
+Plug 'justinmk/vim-sneak'
+
+" coc relate
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
 
 call plug#end()
 
@@ -64,18 +69,25 @@ call plug#end()
 syntax enable
 
 " tab setting {{
-set expandtab
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+set expandtab               " et:  expand tab through space
+set shiftwidth=4            " sw:  space count for shift
+set tabstop=4               " ts:  one tab contain space count
+set softtabstop=4           " sts: for et, space count that backspace would delete
+"set smarttab               " sta: line begin to insert sw space, otherwise insert ts space (vim-sensible)
 " }}
 
 " autocmd {{ "
 augroup common
   autocmd!
-  autocmd FileType make set noexpandtab shiftwidth=4 softtabstop=0
+
+  " tab setting
+  autocmd FileType make setlocal noexpandtab shiftwidth=4 softtabstop=0
+  autocmd FileType vim setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+
+  " others
+
 augroup end
-" }} autocmd "
+" }} autocmd (filetype) "
 
 " For tmux user, plese set the following option in .tmux.conf
 " set -g  default-terminal    "tmux-256color"
@@ -110,37 +122,11 @@ endif
 
 if has_key(g:plugs, 'vim-airline')
   let g:airline_powerline_fonts = 1
-  let g:airline_detect_paste=1
+  let g:airline_detect_paste = 1
   if !has('nvim')
     " To display the status line always
     set laststatus=2
   endif
-endif
-
-if has_key(g:plugs, 'coc.nvim')
-  let $PATH .= ':' . my_cache_path . '/gopath/bin'
-  let g:coc_global_extensions = [
-    \'coc-css', 'coc-json', 'coc-go', 'coc-yaml'
-    \]
-
-  autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
-
-  " Snippet completion {{
-  inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm()
-      \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-  inoremap <silent><expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-  inoremap <silent><expr> <c-space> coc#refresh()
-  inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-  function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
-  endfunction
-
-  let g:coc_snippet_next = '<tab>'
-  " }}
 endif
 
 if has_key(g:plugs, 'vim-go')
@@ -162,6 +148,7 @@ if has_key(g:plugs, 'vim-snippets')
 endif
 
 if has_key(g:plugs, 'vim-signify')
+  " :SignifyToggle to toggle enable/disable
 endif
 
 if has_key(g:plugs, 'rainbow')
@@ -190,6 +177,8 @@ if has_key(g:plugs, 'vim-repeat')
 endif
 
 if has_key(g:plugs, 'vim-better-whitespace')
+  let g:strip_whitespace_on_save = 1
+  autocmd FileType markdown EnableWhitespace  " markdown is not enable by default
 endif
 
 if has_key(g:plugs, 'undotree')
@@ -200,4 +189,28 @@ if has_key(g:plugs, 'undotree')
   endif
   exec 'set undodir='.my_undodir
   set undofile
+endif
+
+if has_key(g:plugs, 'vim-sneak')
+endif
+
+if has_key(g:plugs, 'coc.nvim')
+  let $PATH .= ':'.my_cache_path.'/gopath/bin'
+
+  " Snippet completion {{
+  inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm()
+    \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+  inoremap <silent><expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+  inoremap <silent><expr> <c-space> coc#refresh()
+  inoremap <silent><expr> <TAB>
+    \ pumvisible() ? "\<C-n>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ coc#refresh()
+  function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1] =~# '\s'
+  endfunction
+
+  let g:coc_snippet_next = '<tab>'
+  " }}
 endif

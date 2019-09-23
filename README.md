@@ -27,16 +27,21 @@ EOF
 
    3.2
      install gofumports (https://github.com/mvdan/gofumpt)
-     $ cd $(mktemp -d); go mod init tmp; go get mvdan.cc/gofumpt
+     $ _TMP_GO=$(mktemp -d); \
+       go mod init tmp; \
+       go get mvdan.cc/gofumpt/gofumports; \
+       cp -av ${GOPATH}/bin/gofumports ~/.cache/vim/gopath/bin; \
+       cd - > /dev/null 2>&1; \
+       rm -rf ${_TMP_GO}
 
 3. Install all plugins: Launch vim and run :PlugInstall
 
 4. Reset entire environment
-   $ rm -rf ~/.cache/vim
-   $ rm -rf ~/.cache/nvim
-   $ rm -rf ~/.vim/autoload
-   $ rm -rf ~/.local/share/nvim/site/autoload
-   $ sudo rm -rf ~/.config/coc
+   $ rm -rf ~/.cache/vim; \
+     rm -rf ~/.cache/nvim; \
+     rm -rf ~/.vim/autoload; \
+     rm -rf ~/.local/share/nvim/site/autoload; \
+     rm -rf ~/.config/coc
 
 PLUGINS
 -------
