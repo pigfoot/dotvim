@@ -2,4 +2,5 @@ plugged/
 autoload/
 gopath/
 .netrwhist
+sessions/
 tags

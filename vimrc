@@ -45,6 +45,7 @@ Plug 'tpope/vim-sensible'
 
 " Development
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'SidOfc/mkdx'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'mhinz/vim-signify'
@@ -57,9 +58,10 @@ Plug 'mbbill/undotree'
 Plug 'justinmk/vim-sneak'
 
 " coc relate
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim',  {'branch': 'release'}
+Plug 'neoclide/coc-json',  {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-yaml',  {'do': 'yarn install --frozen-lockfile'}
 
 call plug#end()
 
@@ -69,20 +71,29 @@ call plug#end()
 syntax enable
 
 " tab setting {{
-set expandtab               " et:  expand tab through space
-set shiftwidth=4            " sw:  space count for shift
-set tabstop=4               " ts:  one tab contain space count
-set softtabstop=4           " sts: for et, space count that backspace would delete
-"set smarttab               " sta: line begin to insert sw space, otherwise insert ts space (vim-sensible)
+set expandtab           " et:  expand tab through space [def:1]
+set shiftwidth=4        " sw:  space count for shift [def:8]
+set tabstop=4           " ts:  one tab contain space count [def:8]
+set softtabstop=4       " sts: for et, space count that backspace would delete [def:0]
+"set smarttab           " sta: line begin to insert sw space, otherwise insert ts space [def:0 but 1 in vim-sensible]
 " }}
+
+" misc {{ "
+set copyindent          " copy the previous indentation on autoindenting
+set ignorecase          " ignore case when searching
+set smartcase           " ignore case if search pattern is all lowercase,case-sensitive otherwise
+set nowrap              " don't wrap lines
+set noswapfile          " disabling swap files creation
+
+" }} "
 
 " autocmd {{ "
 augroup common
   autocmd!
 
   " tab setting
-  autocmd FileType make setlocal noexpandtab shiftwidth=4 softtabstop=0
-  autocmd FileType vim setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+  autocmd FileType Makefile setlocal noexpandtab shiftwidth=4 softtabstop=0
+  autocmd FileType vim      setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 
   " others
 
@@ -139,6 +150,9 @@ if has_key(g:plugs, 'vim-go')
   let g:go_fmt_command = 'gofumports'
   let g:go_def_mode = 'godef'
   let g:go_get_update = 0
+endif
+
+if has_key(g:plugs, 'mkdx')
 endif
 
 if has_key(g:plugs, 'ultisnips')
