@@ -44,7 +44,7 @@ Plug 'kristijanhusak/defx-git'
 Plug 'kristijanhusak/defx-icons'
 
 " Scheme
-Plug 'liaoishere/vim-one'
+Plug 'lifepillar/vim-solarized8'
 Plug 'itchyny/lightline.vim'
 Plug 'maximbaz/lightline-ale'
 
@@ -119,14 +119,13 @@ let g:mapleader = ","
 "" PLUGIN SETTINGS
 "---------------------------------------------------------------------------
 
-if has_key(g:plugs, 'vim-one')
-  colorscheme one
+if has_key(g:plugs, 'vim-solarized8')
+  colorscheme solarized8
   set background=dark
-  let g:one_allow_italics = 1
   " For tmux user, plese set the following option in .tmux.conf
   " set -g  default-terminal    "tmux-256color"
   " set -ga terminal-overrides  ",xterm-256color:Tc"
-  if has("termguicolors")
+  if has("termguicolors") && has('gui_running')
     set termguicolors
   endif
 endif
