@@ -38,6 +38,7 @@ endif
 
 " Scheme
 Plug 'lifepillar/vim-solarized8'
+"Plug 'arcticicestudio/nord-vim'
 Plug 'itchyny/lightline.vim'
 Plug 'maximbaz/lightline-ale'
 
@@ -46,6 +47,7 @@ Plug 'tpope/vim-sensible'
 
 " Development
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'rust-lang/rust.vim'
 Plug 'SidOfc/mkdx'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -116,9 +118,19 @@ if has_key(g:plugs, 'vim-solarized8')
   colorscheme solarized8
   set background=dark
   " For tmux user, plese set the following option in .tmux.conf
-  " set -g  default-terminal    "tmux-256color"
-  " set -ga terminal-overrides  ",xterm-256color:Tc"
+  " set -g  default-terminal    "xterm-256color"
+  " set -ga terminal-overrides  ",*256col*:Tc"
   if has("termguicolors") && has('gui_running')
+    set termguicolors
+  endif
+endif
+
+if has_key(g:plugs, 'nord-vim')
+  colorscheme nord
+  " For tmux user, plese set the following option in .tmux.conf
+  " set -g  default-terminal    "xterm-256color"
+  " set -ga terminal-overrides  ",*256col*:Tc"
+  if has("termguicolors")
     set termguicolors
   endif
 endif
@@ -265,6 +277,10 @@ if has_key(g:plugs, 'vim-go')
   let g:go_def_reuse_buffer = 1
   let g:go_fmt_command = 'gofumports'
   let g:go_get_update = 0
+endif
+
+if has_key(g:plugs, 'rust.vim')
+  let g:rustfmt_autosave = 1
 endif
 
 if has_key(g:plugs, 'mkdx')
