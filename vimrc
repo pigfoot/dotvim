@@ -47,7 +47,6 @@ Plug 'tpope/vim-sensible'
 
 " Development
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'SidOfc/mkdx'
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive'
 Plug 'luochen1990/rainbow'
@@ -275,21 +274,8 @@ if has_key(g:plugs, 'vim-go')
   let g:go_highlight_extra_types = 1
   let g:go_highlight_build_constraints = 1
   let g:go_def_reuse_buffer = 1
-  let g:go_fmt_command = 'gofumports'
+  let g:go_gopls_enabled = 1
   let g:go_get_update = 0
-endif
-
-if has_key(g:plugs, 'rust.vim')
-  let g:rustfmt_autosave = 1
-endif
-
-if has_key(g:plugs, 'mkdx')
-endif
-
-if has_key(g:plugs, 'ultisnips')
-endif
-
-if has_key(g:plugs, 'vim-snippets')
 endif
 
 if has_key(g:plugs, 'vim-signify')
