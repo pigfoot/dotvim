@@ -47,25 +47,25 @@ Plug 'tpope/vim-sensible'
 
 " Development
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'rust-lang/rust.vim'
 Plug 'SidOfc/mkdx'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive'
 Plug 'luochen1990/rainbow'
-Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'mbbill/undotree'
 Plug 'justinmk/vim-sneak'
 
-" coc relate
-Plug 'neoclide/coc.nvim',  {'branch': 'release'}
-Plug 'neoclide/coc-json',  {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-yaml',  {'do': 'yarn install --frozen-lockfile'}
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
+if has('nvim')
+  Plug 'neovim/nvim-lspconfig'        " Collection of configurations for built-in LSP client
+  Plug 'hrsh7th/nvim-cmp'             " Autocompletion plugin
+  Plug 'hrsh7th/cmp-nvim-lsp'         " LSP source for nvim-cmp
+  Plug 'saadparwaiz1/cmp_luasnip'     " Snippets source for nvim-cmp
+  Plug 'L3MON4D3/LuaSnip'             " Snippets plugin
+endif
 
 call plug#end()
 
@@ -304,11 +304,6 @@ if has_key(g:plugs, 'rainbow')
   let g:rainbow_active = 1
 endif
 
-if has_key(g:plugs, 'nerdcommenter')
-  " <leader>cc         | Comment out the current line or text selected in visual mode
-  " <leader>c<space>   | Toggles the comment state of the selected line(s)
-endif
-
 if has_key(g:plugs, 'vim-surround')
   " ys is 'you surround', e.g. ysiw<p>
   "   ================          =======     ==========================
@@ -319,9 +314,6 @@ if has_key(g:plugs, 'vim-surround')
   "   "Look ma, I'm *HTML!"     cs"<q>      <q>Look ma, I'm HTML!</q>
   "   if *x>3 {                 ysW(        if ( x>3 ) {
   "   my $str = *whee!;         vllllS'     my $str = 'whee!';
-endif
-
-if has_key(g:plugs, 'vim-repeat')
 endif
 
 if has_key(g:plugs, 'vim-better-whitespace')
@@ -342,23 +334,14 @@ endif
 if has_key(g:plugs, 'vim-sneak')
 endif
 
-if has_key(g:plugs, 'coc.nvim')
-  let $PATH .= ':'.my_cache_path.'/gopath/bin'
+if has_key(g:plugs, 'telescope.nvim')
+  " Find files using Telescope command-line sugar.
+  nnoremap <leader>ff <cmd>Telescope find_files<cr>
+  nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+  nnoremap <leader>fb <cmd>Telescope buffers<cr>
+  nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+endif
 
-  " Snippet completion {{
-  inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm()
-    \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-  inoremap <silent><expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-  inoremap <silent><expr> <c-space> coc#refresh()
-  inoremap <silent><expr> <TAB>
-    \ pumvisible() ? "\<C-n>" :
-    \ <SID>check_back_space() ? "\<TAB>" :
-    \ coc#refresh()
-  function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1] =~# '\s'
-  endfunction
-
-  let g:coc_snippet_next = '<tab>'
-  " }}
+if has_key(g:plugs, 'nvim-cmp')
+  lua require 'pf_nvim-cmp'
 endif
