@@ -47,6 +47,7 @@ Plug 'tpope/vim-sensible'
 
 " Development
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'alx741/vim-rustfmt'
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive'
 Plug 'luochen1990/rainbow'
@@ -59,11 +60,26 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
 if has('nvim')
+  " auto-completion engine
   Plug 'neovim/nvim-lspconfig'        " Collection of configurations for built-in LSP client
-  Plug 'hrsh7th/nvim-cmp'             " Autocompletion plugin
   Plug 'hrsh7th/cmp-nvim-lsp'         " LSP source for nvim-cmp
-  Plug 'saadparwaiz1/cmp_luasnip'     " Snippets source for nvim-cmp
-  Plug 'L3MON4D3/LuaSnip'             " Snippets plugin
+  Plug 'hrsh7th/cmp-buffer'
+  Plug 'hrsh7th/cmp-path'
+  Plug 'hrsh7th/cmp-cmdline'
+  Plug 'hrsh7th/nvim-cmp'             " Autocompletion plugin
+
+  " treesitter
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+  " vsnip
+  Plug 'hrsh7th/cmp-vsnip'            " Snippets source for nvim-cmp
+  Plug 'hrsh7th/vim-vsnip'            " Snippets plugin
+  Plug 'hrsh7th/vim-vsnip-integ'
+  Plug 'onsails/lspkind-nvim'
+
+  Plug 'subnut/nvim-ghost.nvim', {'do': ':call nvim_ghost#installer#install()'}
+  Plug 'github/copilot.vim'
+  Plug 'lukas-reineke/indent-blankline.nvim'
 endif
 
 call plug#end()
@@ -278,6 +294,10 @@ if has_key(g:plugs, 'vim-go')
   let g:go_get_update = 0
 endif
 
+if has_key(g:plugs, 'vim-rustfmt')
+  "let g:rustfmt_on_save = 1
+endif
+
 if has_key(g:plugs, 'vim-signify')
   " :SignifyToggle to toggle enable/disable
 endif
@@ -330,4 +350,18 @@ endif
 
 if has_key(g:plugs, 'nvim-cmp')
   lua require 'pf_nvim-cmp'
+endif
+
+if has_key(g:plugs, 'nvim-lspconfig')
+  lua require 'pf_nvim-lspconfig'
+endif
+
+if has_key(g:plugs, 'indent-blankline.nvim')
+lua << EOF
+  require("indent_blankline").setup {
+    -- for example, context is off by default, use this to turn it on
+    show_current_context = true,
+    show_current_context_start = true,
+  }
+EOF
 endif
