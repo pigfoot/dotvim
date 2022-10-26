@@ -78,6 +78,11 @@ if has('nvim')
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope.nvim'
 
+  " status line
+  Plug 'nvim-lualine/lualine.nvim'
+  " If you want to have icons in your statusline choose one of these
+  Plug 'kyazdani42/nvim-web-devicons'
+
   Plug 'lukas-reineke/indent-blankline.nvim'
 endif
 
@@ -227,6 +232,12 @@ if has_key(g:plugs, 'telescope.nvim')
   nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 endif
 
+if has_key(g:plugs, 'lualine.nvim')
+  lua require('lualine').setup({})
+endif
+
+if has_key(g:plugs, 'nvim-web-devicons')
+endif
 
 if has_key(g:plugs, 'indent-blankline.nvim')
 lua << EOF
