@@ -43,6 +43,7 @@ Plug 'lifepillar/vim-solarized8'
 Plug 'tpope/vim-sensible'
 
 " Development
+Plug 'github/copilot.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'simrat39/rust-tools.nvim'
 Plug 'mhinz/vim-signify'
@@ -68,10 +69,8 @@ if has('nvim')
   Plug 'hrsh7th/cmp-path'
   Plug 'hrsh7th/cmp-cmdline'
 
-  Plug 'jose-elias-alvarez/null-ls.nvim'
-
   " treesitter
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+ " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
   " Fuzzy finder
   Plug 'nvim-lua/popup.nvim'
@@ -144,6 +143,9 @@ if has_key(g:plugs, 'vim-solarized8')
   endif
 endif
 
+if has_key(g:plugs, 'copilot.vim')
+endif
+
 if has_key(g:plugs, 'vim-go')
   let g:go_bin_path = my_cache_path . '/gopath/bin'
   let g:go_highlight_functions = 1
@@ -211,9 +213,6 @@ if has_key(g:plugs, 'nvim-cmp')
   lua require 'pf_nvim-cmp'
 endif
 
-if has_key(g:plugs, 'null-ls.nvim')
-  lua require 'pf_null-ls'
-endif
 if has_key(g:plugs, 'nvim-treesitter')
   lua require 'pf_nvim-treesitter'
 endif
@@ -241,10 +240,7 @@ endif
 
 if has_key(g:plugs, 'indent-blankline.nvim')
 lua << EOF
-  require("indent_blankline").setup {
-    -- for example, context is off by default, use this to turn it on
-    show_current_context = true,
-    show_current_context_start = true,
-  }
+require("ibl").setup {
+}
 EOF
 endif

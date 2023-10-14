@@ -57,12 +57,14 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
   vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set('n', '<leader>f', vim.lsp.buf.formatting, bufopts)
+  vim.keymap.set('n', '<leader>f', function()
+    vim.lsp.buf.format { async = true }
+    end, bufopts)
 end
 
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
---local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver' }
-local servers = { 'clangd', 'gopls', 'pylsp', 'rust-tools' }
+--local servers = { 'clangd', 'rust-analyzer', 'pyright', 'tsserver' }
+local servers = { 'clangd', 'gopls', 'pylsp', 'rust-analyzer' }
 for _, lsp in ipairs(servers) do
   if (lsp == 'gopls') then
     lspconfig[lsp].setup ({
@@ -75,32 +77,15 @@ for _, lsp in ipairs(servers) do
         debounce_text_changes = 150,
       },
     })
-  elseif (lsp == 'rust_analyzer') then
-    lspconfig[lsp].setup ({
+  elseif (lsp == 'rust-analyzer') then
+    require("rust-tools").setup ({
       on_attach = on_attach,
       capabilities = capabilities,
       settings = {
-        ["rust-analyzer"] = { -- enable clippy on save
+        ["rust-analyzer"] = {
           checkOnSave = {
             command = "clippy"
-          },
-        }
-      }
-    })
-  elseif (lsp == 'rust-tools') then
-    local rt = require("rust-tools")
-    rt.setup({
-      server = {
-        on_attach = function(client, bufnr)
-          client.resolved_capabilities.document_formatting = false
-          on_attach(client, bufnr)
-        end,
-        settings = {
-          ["rust-analyzer"] = { -- enable clippy on save
-            checkOnSave = {
-              command = "clippy"
-            },
-          },
+          }
         }
       }
     })
