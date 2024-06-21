@@ -17,13 +17,25 @@ cmp.setup{
       select = true,
     }),
     -- Add tab support
-    ['<Tab>'] = function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
+--  ['<Tab>'] = function(fallback)
+--    if cmp.visible() then
+--      cmp.select_next_item()
+--    else
+--      fallback()
+--    end
+--  end,
+    ['<Tab>'] = cmp.mapping(function(fallback)
+      if vim.fn['vsnip#jumpable'](1) == 1 then
+        feedkey('<Plug>(vsnip-jump-next)', '')
       else
-        fallback()
+        local copilot_keys = vim.fn['copilot#Accept']()
+        if copilot_keys ~= '' then
+          vim.api.nvim_feedkeys(copilot_keys, 'i', true)
+        else
+          fallback()
+        end
       end
-    end,
+    end, { 'i', 's' }),
     ['<S-Tab>'] = function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
