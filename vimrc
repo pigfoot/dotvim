@@ -13,15 +13,15 @@ filetype plugin indent on
 
 " Automatic installation for vim-plug
 
-"if !has('nvim')
-"  let my_plug_path = $HOME.'/.vim/autoload/plug.vim'
-"else
-"  let my_plug_path = $HOME.'/.local/share/nvim/site/autoload/plug.vim'
-"endif
+if !has('nvim')
+  let my_plug_path = $HOME.'/.vim/autoload/plug.vim'
+else
+  let my_plug_path = getenv('XDG_DATA_HOME') ?? $HOME . '/.local/share'
+  let my_plug_path = my_plug_path . '/nvim/site/autoload/plug.vim'
+endif
 
-let my_plug_path    = $HOME.'/.vim/autoload/plug.vim'
-let my_cache_path   = $HOME.'/.cache/vim'
-let my_plugins_path = my_cache_path.'/plugged'
+let my_cache_path   = getenv('XDG_CACHE_HOME') ?? $HOME . '/.cache/nvim'
+let my_plugins_path = my_cache_path .'/plugged'
 
 if empty(glob(my_plug_path))
   silent execute '!curl -fLo '.my_plug_path.' --create-dirs
@@ -31,58 +31,58 @@ endif
 
 call plug#begin(my_plugins_path)
 
-if !has('nvim')
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-
-" Scheme
 Plug 'lifepillar/vim-solarized8'
 
 " Generic purpose
 Plug 'tpope/vim-sensible'
 
-" Development
-Plug 'github/copilot.vim'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'simrat39/rust-tools.nvim'
-Plug 'mhinz/vim-signify'
-Plug 'tpope/vim-fugitive'
-Plug 'luochen1990/rainbow'
-Plug 'tpope/vim-surround'
+" Development - General
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'mbbill/undotree'
-Plug 'justinmk/vim-sneak'
 
 if has('nvim')
-  " auto-completion engine
+
+  " package manager for Neovim
+  Plug 'williamboman/mason.nvim'
+  Plug 'WhoIsSethDaniel/mason-tool-installer.nvim'
+
+  " LSP
   Plug 'neovim/nvim-lspconfig'        " Collection of configurations for built-in LSP client
+  Plug 'williamboman/mason-lspconfig.nvim'
+  Plug 'nvim-lua/lsp-status.nvim'
+
+  " auto-completion engine
   Plug 'hrsh7th/nvim-cmp'             " Completion framework
   Plug 'hrsh7th/cmp-nvim-lsp'         " LSP completion source for nvim-cmp
-
-  Plug 'hrsh7th/cmp-vsnip'            " Snippets source for nvim-cmp
-  Plug 'hrsh7th/vim-vsnip'            " Snippets plugin
-  Plug 'hrsh7th/vim-vsnip-integ'
-  Plug 'onsails/lspkind-nvim'
-
   Plug 'hrsh7th/cmp-buffer'
   Plug 'hrsh7th/cmp-path'
-  Plug 'hrsh7th/cmp-cmdline'
+  Plug 'onsails/lspkind-nvim'
 
-  " treesitter
- " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  " Snippet Engine and sources
+  Plug 'L3MON4D3/LuaSnip', {'tag': 'v2.*', 'do': 'make install_jsregexp'}
+  Plug 'saadparwaiz1/cmp_luasnip'
+  Plug 'rafamadriz/friendly-snippets'
 
-  " Fuzzy finder
-  Plug 'nvim-lua/popup.nvim'
-  Plug 'nvim-lua/plenary.nvim'
-  Plug 'nvim-telescope/telescope.nvim'
+  " Copilot
+  Plug 'zbirenbaum/copilot.lua'
+  Plug 'zbirenbaum/copilot-cmp'
+
+  " Go
+  Plug 'ray-x/go.nvim'
+  Plug 'ray-x/guihua.lua' " recommended if need floating window support
+
+  " Syntax highlighting
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+  " Linting and Formatter
+  Plug 'mfussenegger/nvim-lint'
+  Plug 'mhartington/formatter.nvim'
 
   " status line
   Plug 'nvim-lualine/lualine.nvim'
   " If you want to have icons in your statusline choose one of these
   Plug 'kyazdani42/nvim-web-devicons'
 
-  Plug 'lukas-reineke/indent-blankline.nvim'
 endif
 
 call plug#end()
@@ -135,7 +135,7 @@ let g:mapleader = ","
 if has_key(g:plugs, 'vim-solarized8')
   colorscheme solarized8
   set background=dark
-  " For tmux user, plese set the following option in .tmux.conf
+  " For tmux user, please set the following option in .tmux.conf
   " set -g  default-terminal    "xterm-256color"
   " set -ga terminal-overrides  ",*256col*:Tc"
   if has("termguicolors") && has('gui_running')
@@ -143,48 +143,7 @@ if has_key(g:plugs, 'vim-solarized8')
   endif
 endif
 
-if has_key(g:plugs, 'copilot.vim')
-endif
-
-if has_key(g:plugs, 'vim-go')
-  let g:go_bin_path = my_cache_path . '/gopath/bin'
-  let g:go_highlight_functions = 1
-  let g:go_highlight_methods = 1
-  let g:go_highlight_fields = 1
-  let g:go_highlight_types = 1
-  let g:go_highlight_operators = 1
-  let g:go_highlight_extra_types = 1
-  let g:go_highlight_build_constraints = 1
-  let g:go_def_reuse_buffer = 1
-  let g:go_gopls_enabled = 1
-  let g:go_get_update = 0
-endif
-
-if has_key(g:plugs, 'rust-tools.nvim')
-endif
-
-if has_key(g:plugs, 'vim-signify')
-  " :SignifyToggle to toggle enable/disable
-endif
-
-if has_key(g:plugs, 'vim-fugitive')
-endif
-
-if has_key(g:plugs, 'rainbow')
-  " To disable it later via :RainbowToggle
-  let g:rainbow_active = 1
-endif
-
-if has_key(g:plugs, 'vim-surround')
-  " ys is 'you surround', e.g. ysiw<p>
-  "   ================          =======     ==========================
-  "   Old text                  Command     New text ~
-  "   ================          =======     ==========================
-  "   "Hello *world!"           ds"         Hello world!
-  "   [123+4*56]/2              cs])        (123+456)/2
-  "   "Look ma, I'm *HTML!"     cs"<q>      <q>Look ma, I'm HTML!</q>
-  "   if *x>3 {                 ysW(        if ( x>3 ) {
-  "   my $str = *whee!;         vllllS'     my $str = 'whee!';
+if has_key(g:plugs, 'vim-sensible')
 endif
 
 if has_key(g:plugs, 'vim-better-whitespace')
@@ -202,33 +161,42 @@ if has_key(g:plugs, 'undotree')
   set undofile
 endif
 
-if has_key(g:plugs, 'vim-sneak')
-endif
-
-if has_key(g:plugs, 'nvim-lspconfig')
+if has_key(g:plugs, 'mason.nvim')
+  \ && has_key(g:plugs, 'mason-tool-installer.nvim')
+  \ && has_key(g:plugs, 'nvim-lspconfig')
+  \ && has_key(g:plugs, 'mason-lspconfig.nvim')
+  \ && has_key(g:plugs, 'go.nvim')
+  \ && has_key(g:plugs, 'guihua.lua')
   lua require 'pf_nvim-lspconfig'
 endif
 
-if has_key(g:plugs, 'nvim-cmp')
-  lua require 'pf_nvim-cmp'
+if has_key(g:plugs, 'mason.nvim')
+  \ && has_key(g:plugs, 'nvim-cmp')
+  \ && has_key(g:plugs, 'cmp-nvim-lsp')
+  \ && has_key(g:plugs, 'LuaSnip')
+  \ && has_key(g:plugs, 'cmp_luasnip')
+  \ && has_key(g:plugs, 'lspkind-nvim')
+  \ && has_key(g:plugs, 'copilot.lua')
+    lua require 'pf_nvim-cmp'
+endif
+
+if has_key(g:plugs, 'LuaSnip')
+  \ && has_key(g:plugs, 'friendly-snippets')
+  lua require('luasnip.loaders.from_vscode').lazy_load()
+endif
+
+if has_key(g:plugs, 'copilot.lua')
+  \ && has_key(g:plugs, 'copilot-cmp')
+  lua require 'pf_nvim-copilot'
 endif
 
 if has_key(g:plugs, 'nvim-treesitter')
-  lua require 'pf_nvim-treesitter'
+  lua require 'pf_nvim-syntax_highlighting'
 endif
 
-if has_key(g:plugs, 'popup.nvim')
-endif
-
-if has_key(g:plugs, 'plenary.nvim')
-endif
-
-if has_key(g:plugs, 'telescope.nvim')
-  " Find files using Telescope command-line sugar.
-  nnoremap <leader>ff <cmd>Telescope find_files<cr>
-  nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-  nnoremap <leader>fb <cmd>Telescope buffers<cr>
-  nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+if has_key(g:plugs, 'nvim-lint')
+  \ && has_key(g:plugs, 'formatter.nvim')
+  lua require 'pf_nvim-lint_format'
 endif
 
 if has_key(g:plugs, 'lualine.nvim')
@@ -236,11 +204,4 @@ if has_key(g:plugs, 'lualine.nvim')
 endif
 
 if has_key(g:plugs, 'nvim-web-devicons')
-endif
-
-if has_key(g:plugs, 'indent-blankline.nvim')
-lua << EOF
-require("ibl").setup {
-}
-EOF
 endif
